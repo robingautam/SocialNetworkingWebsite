@@ -4,10 +4,10 @@ require_once("includes/connect.php");
 require_once("includes/functions.php");
 require_once("includes/session.php");
 
-$username=$_POST["username"];
+$username=mysqli_real_escape_string($_POST["username"]);
 $password1=$_POST["passwd1"];
-$email1=$_POST["email1"];
-$hashed_password=sha1($password1);
+$email1=mysqli_real_escape_string($_POST["email1"]);
+$hashed_password=md5($password1);
 
 
 $query="insert into users(username,hashed_password,email,rank) values('{$username}','{$hashed_password}','{$email1}',10)";
